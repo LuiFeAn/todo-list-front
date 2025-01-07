@@ -1,6 +1,6 @@
 import { Check, Trash } from "lucide-react";
 import useCardController from "./card.controller";
-import { ITodo } from "../../todo.service.interfaces";
+import { ITodo } from "../../../../todo.service.interfaces";
 
 interface Props {
   todo: ITodo;

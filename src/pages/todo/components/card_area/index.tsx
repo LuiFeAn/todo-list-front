@@ -1,6 +1,6 @@
 import { ITodo } from "../../todo.service.interfaces";
-import Card from "../card";
-import CreationCard from "../creation_card";
+import Card from "./components/card";
+import CreationCard from "./components/creation_card";
 interface Props {
   todos: ITodo[];
 }

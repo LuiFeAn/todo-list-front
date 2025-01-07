@@ -1,4 +1,4 @@
-import { PriorityEnum } from "../../todo.service.interfaces";
+import { PriorityEnum } from "../../../../todo.service.interfaces";
 
 export default function useCardController() {
   function handleCardColor(priority: PriorityEnum) {
