@@ -9,7 +9,8 @@ interface Props {
 }
 
 export default function CardArea({ todos, refetch }: Props) {
-  const { cardCreation, handleCardCreation } = useCardAreaController();
+  const { cardCreation, editTodo, handleCardCreation, handleEditTodo } =
+    useCardAreaController();
 
   return (
     <div>
@@ -20,12 +21,17 @@ export default function CardArea({ todos, refetch }: Props) {
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-12 bg-white pb-20">
           <CardCreation onClick={handleCardCreation} />
           {todos.map((todo) => (
-            <Card refetch={refetch} key={todo.id} todo={todo} />
+            <Card
+              onClick={handleEditTodo}
+              refetch={refetch}
+              key={todo.id}
+              todo={todo}
+            />
           ))}
         </div>
         <CreateTodoForm
           refetch={refetch}
-          open={cardCreation}
+          open={cardCreation || editTodo}
           onCancel={handleCardCreation}
         />
       </div>

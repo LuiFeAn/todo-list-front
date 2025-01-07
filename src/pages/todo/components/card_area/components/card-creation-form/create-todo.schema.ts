@@ -13,4 +13,10 @@ export const createTodoInputSchema = z.object({
   priority: z.nativeEnum(PriorityEnum).optional(),
 });
 
+export const editodoInputPartialSchema = createTodoInputSchema.partial();
+
+export type EditTodoInputPartialType = z.infer<
+  typeof editodoInputPartialSchema
+>;
+
 export type CreateTodoInputType = z.infer<typeof createTodoInputSchema>;
