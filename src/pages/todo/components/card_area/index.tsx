@@ -13,6 +13,8 @@ export default function CardArea({ todos, refetch }: Props) {
     handleCardCreation,
     handleEditTodo,
     handleOpenModal,
+    editTodo,
+    cardCreation,
     openModal,
     currentSchema,
   } = useCardAreaController();
@@ -27,6 +29,7 @@ export default function CardArea({ todos, refetch }: Props) {
           <CardCreation
             onClick={() => {
               handleCardCreation();
+              handleEditTodo();
               handleOpenModal();
             }}
           />
@@ -34,6 +37,7 @@ export default function CardArea({ todos, refetch }: Props) {
             <Card
               onClick={() => {
                 handleOpenModal();
+                handleCardCreation();
                 handleEditTodo();
               }}
               refetch={refetch}
@@ -43,6 +47,8 @@ export default function CardArea({ todos, refetch }: Props) {
           ))}
         </div>
         <CreateTodoForm
+          edit={editTodo}
+          create={cardCreation}
           schema={currentSchema}
           refetch={refetch}
           open={openModal}

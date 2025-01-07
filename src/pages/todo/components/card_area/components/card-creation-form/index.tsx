@@ -16,6 +16,8 @@ import {
 
 interface Props {
   open: boolean;
+  edit: boolean;
+  create: boolean;
   onCancel(): void;
   schema: CreateTodoInputType | EditTodoInputPartialType;
   refetch(): Promise<void>;
@@ -24,6 +26,7 @@ interface Props {
 export default function CreateTodoForm({
   open,
   onCancel,
+  create,
   refetch,
   schema,
 }: Props) {
@@ -41,7 +44,7 @@ export default function CreateTodoForm({
       >
         <div className="bg-white flex flex-col gap-8 rounded-lg shadow-lg p-6 w-96">
           <Typography variant="h6" component="h2" className="text-lg font-bold">
-            Criar Nova Tarefa
+            {create ? "Criar Nova Tarefa" : "Editar Tarefa"}
           </Typography>
 
           <TextField
