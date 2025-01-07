@@ -13,11 +13,11 @@ export default function CardArea({ todos, refetch }: Props) {
 
   return (
     <div className="flex items-center justify-center flex-wrap pt-28">
-      <div className="flex flex-col lg:flex-row justify-center gap-20 w-[80%]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-[80%] pb-20">
+        <CardCreation onClick={handleCardCreation} />
         {todos.map((todo) => (
           <Card refetch={refetch} key={todo.id} todo={todo} />
         ))}
-        <CardCreation onClick={handleCardCreation} />
       </div>
       <CreateTodoForm
         refetch={refetch}
