@@ -38,17 +38,19 @@ export default function Card({ todo, refetch }: Props) {
       </div>
       <div className="flex gap-2 absolute bottom-10 right-5">
         {!todo.done && (
-          <Check
-            onClick={() => makeDone(todo.id)}
-            size={30}
-            className="bg-green-600 rounded-full cursor-pointer text-white p-2"
-          />
+          <>
+            <Check
+              onClick={() => makeDone(todo.id)}
+              size={30}
+              className="bg-green-600 rounded-full cursor-pointer text-white p-2"
+            />
+            <Trash
+              size={30}
+              onClick={() => handleCardDel(todo.id)}
+              className="bg-red-600 rounded-full cursor-pointer text-white p-2"
+            />
+          </>
         )}
-        <Trash
-          size={30}
-          onClick={() => handleCardDel(todo.id)}
-          className="bg-red-600 rounded-full cursor-pointer text-white p-2"
-        />
       </div>
     </div>
   );
