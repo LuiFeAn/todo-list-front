@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function CardArea({ todos, refetch }: Props) {
-  const { cardCreation, editTodo, handleCardCreation, handleEditTodo } =
+  const { handleCardCreation, handleEditTodo, handleOpenModal, openModal } =
     useCardAreaController();
 
   return (
@@ -19,10 +19,18 @@ export default function CardArea({ todos, refetch }: Props) {
       </h1>
       <div className="flex items-center justify-center flex-wrap pt-28 px-4">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-12 bg-white pb-20">
-          <CardCreation onClick={handleCardCreation} />
+          <CardCreation
+            onClick={() => {
+              handleCardCreation();
+              handleOpenModal();
+            }}
+          />
           {todos.map((todo) => (
             <Card
-              onClick={handleEditTodo}
+              onClick={() => {
+                handleOpenModal();
+                handleEditTodo();
+              }}
               refetch={refetch}
               key={todo.id}
               todo={todo}
@@ -31,8 +39,8 @@ export default function CardArea({ todos, refetch }: Props) {
         </div>
         <CreateTodoForm
           refetch={refetch}
-          open={cardCreation || editTodo}
-          onCancel={handleCardCreation}
+          open={openModal}
+          onCancel={handleOpenModal}
         />
       </div>
     </div>
