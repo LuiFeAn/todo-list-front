@@ -4,9 +4,12 @@ import { ITodo } from "../../../../todo.service.interfaces";
 
 interface Props {
   todo: ITodo;
+  refetch(): Promise<void>;
 }
-export default function Card({ todo }: Props) {
-  const { handleCardColor } = useCardController();
+export default function Card({ todo, refetch }: Props) {
+  const { handleCardColor, handleCardDel } = useCardController({
+    refetch,
+  });
 
   return (
     <div
@@ -15,7 +18,11 @@ export default function Card({ todo }: Props) {
       )} lg:w-[400px] pl-4 lg:h-[400px] rounded-lg relative cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg bg-yellow-200 rotate-1 shadow-md shadow-gray-400 border border-gray-300`}
     >
       <h1 className="text-2xl text-start mt-5 font-bold">{todo.title}</h1>
-      <p className={`mt-3 font-bold pl-2 rounded-l-lg text-white ${handleCardColor(todo.priority)}`}>
+      <p
+        className={`mt-3 font-bold pl-2 rounded-l-lg text-white ${handleCardColor(
+          todo.priority
+        )}`}
+      >
         {todo.priority}
       </p>
       <div>
@@ -28,6 +35,7 @@ export default function Card({ todo }: Props) {
         />
         <Trash
           size={30}
+          onClick={() => handleCardDel(todo.id)}
           className="bg-red-600 rounded-full cursor-pointer text-white p-2"
         />
       </div>

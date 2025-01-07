@@ -12,9 +12,10 @@ import {
 interface Props {
   open: boolean;
   onCancel(): void;
+  refetch(): Promise<void>;
 }
 
-export default function CreateTodoForm({ open, onCancel }: Props) {
+export default function CreateTodoForm({ open, onCancel, refetch }: Props) {
   return (
     <Modal open={open} onClose={onCancel}>
       <form className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

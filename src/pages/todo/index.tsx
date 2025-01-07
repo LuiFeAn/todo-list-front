@@ -3,7 +3,7 @@ import useTodoController from "./todo.controller";
 import CardArea from "./components/card_area";
 
 export default function Todos() {
-  const { todos } = useTodoController();
+  const { todos, refetch } = useTodoController();
 
   return (
     <div className="h-screen scroll-smooth ">
@@ -15,7 +15,7 @@ export default function Todos() {
           className="bg-gray-50 lg:w-[20%] sm:w-[50%]"
         />
       </div>
-      <CardArea todos={todos} />
+      <CardArea refetch={refetch} todos={todos} />
     </div>
   );
 }

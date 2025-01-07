@@ -18,5 +18,6 @@ export default function useTodoController() {
 
   return {
     todos,
+    refetch: handleTodoList,
   };
 }
