@@ -1,20 +1,10 @@
 import { todoApi } from "../../api";
 import { LoginSchemaType } from "./login.schema";
-
-export interface IUserAuthentication {
-  user: {
-    username: string;
-    email: string;
-  };
-  accessToken: string;
-}
+import { IUserSession } from "./login.service.interfaces";
 
 export default function useLoginService() {
   async function authentication(data: LoginSchemaType) {
-    const response = await todoApi.post<IUserAuthentication>(
-      "/auth/login",
-      data
-    );
+    const response = await todoApi.post<IUserSession>("/auth/login", data);
     return response.data;
   }
 
