@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PriorityEnum } from "./todo.service.interfaces";
+import { PriorityEnum } from "../../../../todo.service.interfaces";
 
 export const createTodoInputSchema = z.object({
   title: z
