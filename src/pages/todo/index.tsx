@@ -6,7 +6,7 @@ export default function Todos() {
   const { todos } = useTodoController();
 
   return (
-    <div>
+    <div className="h-screen scroll-smooth ">
       <div className="pl-10">
         <TextField
           placeholder="Nome, descrição"

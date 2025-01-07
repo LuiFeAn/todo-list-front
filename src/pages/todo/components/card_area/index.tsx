@@ -1,6 +1,6 @@
 import { ITodo } from "../../todo.service.interfaces";
 import Card from "../card";
-
+import CreationCard from "../creation_card";
 interface Props {
   todos: ITodo[];
 }
@@ -12,6 +12,7 @@ export default function CardArea({ todos }: Props) {
         {todos.map((todo) => (
           <Card todo={todo} />
         ))}
+        <CreationCard />
       </div>
     </div>
   );
