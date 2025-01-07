@@ -58,9 +58,7 @@ export default function SignUp() {
           Cadastrar
         </Button>
 
-        <Link to={"/"} className="text-center text-blue-600">
-          Voltar
-        </Link>
+        <Link to={'/'}>Voltar</Link>
       </form>
     </div>
   );
