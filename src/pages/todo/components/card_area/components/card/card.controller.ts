@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function useCardController({ refetch }: Props) {
-  const { del } = useTodoService();
+  const { del, update } = useTodoService();
 
   function handleCardColor(priority: PriorityEnum) {
     const priorityLiterals = {
@@ -28,8 +28,21 @@ export default function useCardController({ refetch }: Props) {
     }
   }
 
+  async function makeDone(id: string) {
+    try {
+      await update(id, {
+        done: true,
+      });
+      await refetch();
+      toast.success("Tarefa concluída");
+    } catch {
+      toast.error("Não foi possível concluir esta tarefa");
+    }
+  }
+
   return {
     handleCardColor,
+    makeDone,
     handleCardDel,
   };
 }

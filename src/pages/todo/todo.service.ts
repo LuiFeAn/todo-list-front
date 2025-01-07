@@ -3,6 +3,10 @@ import { IListOutput } from "../../@shared/interfaces/list-output.interfaces";
 import { CreateTodoInputType } from "./components/card_area/components/card-creation-form/create-todo.schema";
 import { ITodo } from "./todo.service.interfaces";
 
+interface IUpdateTodoInput extends Partial<CreateTodoInputType> {
+  done?: boolean;
+}
+
 export default function useTodoService() {
   async function list() {
     const response = await todoApi.get<IListOutput<ITodo>>("/todos");
@@ -18,7 +22,7 @@ export default function useTodoService() {
     return response.data;
   }
 
-  async function update(id: string, data: Partial<CreateTodoInputType>) {
+  async function update(id: string, data: Partial<IUpdateTodoInput>) {
     await todoApi.patch(`/todos/${id}`, data);
   }
 

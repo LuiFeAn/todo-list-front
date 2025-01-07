@@ -7,7 +7,7 @@ interface Props {
   refetch(): Promise<void>;
 }
 export default function Card({ todo, refetch }: Props) {
-  const { handleCardColor, handleCardDel } = useCardController({
+  const { handleCardColor, handleCardDel, makeDone } = useCardController({
     refetch,
   });
 
@@ -29,10 +29,13 @@ export default function Card({ todo, refetch }: Props) {
         <p className="pt-10 break-words">{todo.description}</p>
       </div>
       <div className="flex gap-2 absolute bottom-10 right-5">
-        <Check
-          size={30}
-          className="bg-green-600 rounded-full cursor-pointer text-white p-2"
-        />
+        {!todo.done && (
+          <Check
+            onClick={() => makeDone(todo.id)}
+            size={30}
+            className="bg-green-600 rounded-full cursor-pointer text-white p-2"
+          />
+        )}
         <Trash
           size={30}
           onClick={() => handleCardDel(todo.id)}
