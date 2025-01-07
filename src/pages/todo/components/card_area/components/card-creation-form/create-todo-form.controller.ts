@@ -1,17 +1,21 @@
 import { toast } from "react-toastify";
 import useTodoService from "../../../../todo.service";
 import {
-  createTodoInputSchema,
   CreateTodoInputType,
+  EditTodoInputPartialType,
 } from "./create-todo.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 interface Props {
   refetch(): Promise<void>;
+  schema: CreateTodoInputType | EditTodoInputPartialType;
 }
 
-export default function useCreateTodoFormController({ refetch }: Props) {
+export default function useCreateTodoFormController({
+  refetch,
+  schema,
+}: Props) {
   const { create } = useTodoService();
 
   const {
@@ -20,7 +24,7 @@ export default function useCreateTodoFormController({ refetch }: Props) {
     reset,
     formState: { errors },
   } = useForm<CreateTodoInputType>({
-    resolver: zodResolver(createTodoInputSchema),
+    resolver: zodResolver(schema as unknown as never),
   });
 
   async function onSubmit(data: CreateTodoInputType) {

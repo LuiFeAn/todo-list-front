@@ -9,8 +9,13 @@ interface Props {
 }
 
 export default function CardArea({ todos, refetch }: Props) {
-  const { handleCardCreation, handleEditTodo, handleOpenModal, openModal } =
-    useCardAreaController();
+  const {
+    handleCardCreation,
+    handleEditTodo,
+    handleOpenModal,
+    openModal,
+    currentSchema,
+  } = useCardAreaController();
 
   return (
     <div>
@@ -38,6 +43,7 @@ export default function CardArea({ todos, refetch }: Props) {
           ))}
         </div>
         <CreateTodoForm
+          schema={currentSchema}
           refetch={refetch}
           open={openModal}
           onCancel={handleOpenModal}

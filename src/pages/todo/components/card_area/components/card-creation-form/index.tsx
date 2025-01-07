@@ -9,17 +9,28 @@ import {
   MenuItem,
 } from "@mui/material";
 import useCreateTodoFormController from "./create-todo-form.controller";
+import {
+  CreateTodoInputType,
+  EditTodoInputPartialType,
+} from "./create-todo.schema";
 
 interface Props {
   open: boolean;
   onCancel(): void;
+  schema: CreateTodoInputType | EditTodoInputPartialType;
   refetch(): Promise<void>;
 }
 
-export default function CreateTodoForm({ open, onCancel, refetch }: Props) {
+export default function CreateTodoForm({
+  open,
+  onCancel,
+  refetch,
+  schema,
+}: Props) {
   const { onSubmit, errors, handleSubmit, register } =
     useCreateTodoFormController({
       refetch,
+      schema,
     });
 
   return (
