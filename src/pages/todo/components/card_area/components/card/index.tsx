@@ -6,7 +6,6 @@ interface Props {
   todo: ITodo;
   refetch(): Promise<void>;
 }
-
 export default function Card({ todo, refetch }: Props) {
   const { handleCardColor, handleCardDel, makeDone } = useCardController({
     refetch,
@@ -16,7 +15,7 @@ export default function Card({ todo, refetch }: Props) {
     <div
       className={`${handleCardColor(
         todo.priority
-      )} lg:w-[400px] pl-4 lg:h-[400px] rounded-lg relative cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg bg-yellow-200 rotate-1 shadow-md shadow-gray-400 border border-gray-300 animate-floating`}
+      )} lg:w-[400px] pl-4 lg:h-[400px] rounded-lg relative cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg bg-yellow-200 rotate-1 shadow-md shadow-gray-400 border border-gray-300`}
     >
       {todo.done && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 rounded-lg z-10">
@@ -37,22 +36,19 @@ export default function Card({ todo, refetch }: Props) {
       <div>
         <p className="pt-10 break-words">{todo.description}</p>
       </div>
-
       <div className="flex gap-2 absolute bottom-10 right-5">
         {!todo.done && (
-          <>
-            <Check
-              onClick={() => makeDone(todo.id)}
-              size={30}
-              className="bg-green-600 rounded-full cursor-pointer text-white p-2"
-            />
-            <Trash
-              size={30}
-              onClick={() => handleCardDel(todo.id)}
-              className="bg-red-600 rounded-full cursor-pointer text-white p-2"
-            />
-          </>
+          <Check
+            onClick={() => makeDone(todo.id)}
+            size={30}
+            className="bg-green-600 rounded-full cursor-pointer text-white p-2"
+          />
         )}
+        <Trash
+          size={30}
+          onClick={() => handleCardDel(todo.id)}
+          className="bg-red-600 rounded-full cursor-pointer text-white p-2"
+        />
       </div>
     </div>
   );
