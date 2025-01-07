@@ -1,4 +1,4 @@
-import { todoApi } from "../../api";
+import { todoApi } from "../../@shared/api";
 import { LoginSchemaType } from "./login.schema";
 import { IUserSession } from "./login.service.interfaces";
 

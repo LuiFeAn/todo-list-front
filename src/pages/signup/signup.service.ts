@@ -1,4 +1,4 @@
-import { todoApi } from "../../api";
+import { todoApi } from "../../@shared/api";
 import { SignUpSchemaType } from "./signup.schema";
 
 export default function useSignupService() {

@@ -1,5 +1,5 @@
 import Header from "./pages/@shared/components/header";
-import AppRoutes from "./routes";
+import AppRoutes from "./@shared/routes";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { todoApi } from "../../api";
+import { todoApi } from "../../@shared/api";
 import { ITodo } from "./todo.service.interfaces";
 
 export default function useTodoService() {
