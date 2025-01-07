@@ -21,7 +21,8 @@ export default function useLoginController() {
 
   const onSubmit = async (data: LoginSchemaType) => {
     try {
-      await authentication(data);
+      const response = await authentication(data);
+      localStorage.setItem("@AUTH_SESSION", JSON.stringify(response));
       Nav("/todos");
       toast.success("Autenticado");
     } catch (err) {

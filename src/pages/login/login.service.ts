@@ -11,7 +11,11 @@ export interface IUserAuthentication {
 
 export default function useLoginService() {
   async function authentication(data: LoginSchemaType) {
-    await todoApi.post<IUserAuthentication>("/auth/login", data);
+    const response = await todoApi.post<IUserAuthentication>(
+      "/auth/login",
+      data
+    );
+    return response.data;
   }
 
   return {
