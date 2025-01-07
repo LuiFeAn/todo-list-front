@@ -19,8 +19,8 @@ export default function Card({ todo, refetch }: Props) {
       )} lg:w-[400px] pl-4 lg:h-[400px] rounded-lg relative cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg bg-yellow-200 rotate-1 shadow-md shadow-gray-400 border border-gray-300`}
     >
       {todo.done && (
-        <div className="absolute inset-0 flex items-center justify-center bg-green-500 bg-opacity-50 rounded-lg z-10">
-          <p className="text-white text-2xl font-bold animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 rounded-lg z-10">
+          <p className="text-2xl font-bold animate-pulse text-black">
             ✔ Concluída!
           </p>
         </div>
