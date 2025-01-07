@@ -1,5 +1,11 @@
+import Header from "./pages/@shared/components/header";
+
 function App() {
-  return <></>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
 
 export default App;
