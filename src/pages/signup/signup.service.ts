@@ -1,13 +1,8 @@
 import { todoApi } from "../../api";
-
-export interface IRegisterUserInput {
-  username: string;
-  email: string;
-  password: string;
-}
+import { SignUpSchemaType } from "./signup.schema";
 
 export default function useSignupService() {
-  async function register(data: IRegisterUserInput) {
+  async function register(data: SignUpSchemaType) {
     await todoApi.post("/users", data);
   }
 
