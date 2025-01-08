@@ -27,7 +27,11 @@ export default function useEditTodoFormController({ refetch, todo }: Props) {
 
   async function onSubmit(data: CreateTodoInputType) {
     try {
-      await update(todo.id, data);
+      await update(todo.id, {
+        title: data.title || undefined,
+        description: data.description || undefined,
+        priority: data.priority || undefined,
+      });
       reset();
       await refetch();
       toast.success("Tarefa atualizada");
