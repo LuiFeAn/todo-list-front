@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { IUserSession } from "../../login/login.service.interfaces";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
   user: IUserSession | undefined;
@@ -15,7 +16,13 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<IUserSession>();
+  const [user, setUser] = useState<IUserSession | undefined>(
+    JSON.parse(
+      localStorage.getItem("@AUTH_SESSION") as string
+    ) as unknown as IUserSession
+  );
+
+  const Nav = useNavigate();
 
   const handleSession = (userData: IUserSession) => {
     setUser(userData);
@@ -25,6 +32,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     setUser(undefined);
     localStorage.removeItem("@AUTH_SESSION");
+    Nav("/");
   };
 
   const isAuthenticated = !!user;

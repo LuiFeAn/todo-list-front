@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -6,6 +7,7 @@ import {
   TextField,
 } from "@mui/material";
 import { UseFormRegister } from "react-hook-form";
+import { useAuth } from "../../../@shared/security/auth.context";
 
 interface Props {
   register: UseFormRegister<{
@@ -16,6 +18,8 @@ interface Props {
 }
 
 export default function TodoFilters({ register }: Props) {
+  const { logout } = useAuth();
+
   return (
     <div className="pl-10 flex gap-5">
       <TextField
@@ -42,6 +46,7 @@ export default function TodoFilters({ register }: Props) {
           <MenuItem value="false">Não Concluídas</MenuItem>
         </Select>
       </FormControl>
+      <Button onClick={logout}>Sair</Button>
     </div>
   );
 }
