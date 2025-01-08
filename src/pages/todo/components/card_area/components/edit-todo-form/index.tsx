@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function EditTodoForm({ open, onCancel, refetch, todo }: Props) {
-  const { onSubmit, errors, handleSubmit, register } =
+  const { onSubmit, errors, handleSubmit, register, todoDeitals } =
     useEditTodoFormController({
       onCancel,
       refetch,
@@ -42,6 +42,7 @@ export default function EditTodoForm({ open, onCancel, refetch, todo }: Props) {
             variant="outlined"
             fullWidth
             className="bg-gray-50"
+            placeholder={todoDeitals?.title}
             {...register("title")}
             error={!!errors.title}
             helperText={errors.title?.message}
@@ -51,6 +52,7 @@ export default function EditTodoForm({ open, onCancel, refetch, todo }: Props) {
             label="Descrição"
             variant="outlined"
             fullWidth
+            placeholder={todoDeitals?.description}
             className="bg-gray-50"
             {...register("description")}
             error={!!errors.description}
@@ -64,6 +66,9 @@ export default function EditTodoForm({ open, onCancel, refetch, todo }: Props) {
               error={!!errors.priority}
               labelId="priority-label"
             >
+              {todoDeitals && (
+                <MenuItem hidden>{todoDeitals.priority}</MenuItem>
+              )}
               <MenuItem value="Baixa">Baixa</MenuItem>
               <MenuItem value="Média">Média</MenuItem>
               <MenuItem value="Alta">Alta</MenuItem>

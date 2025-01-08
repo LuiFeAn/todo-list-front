@@ -7,6 +7,7 @@ import {
   ediTodoInputPartialSchema,
   EditTodoInputPartialType,
 } from "./edit-todo.schema";
+import { useEffect, useState } from "react";
 
 interface Props {
   todo: ITodo;
@@ -19,7 +20,9 @@ export default function useEditTodoFormController({
   todo,
   onCancel,
 }: Props) {
-  const { update } = useTodoService();
+  const { update, detail } = useTodoService();
+
+  const [todoDeitals, setTodoDetails] = useState<ITodo>();
 
   const {
     register,
@@ -46,9 +49,23 @@ export default function useEditTodoFormController({
     }
   }
 
+  async function detailTodo() {
+    try {
+      const response = await detail(todo.id);
+      setTodoDetails(response);
+    } catch {
+      toast.error("Não foi possível detalhar a tarefa");
+    }
+  }
+
+  useEffect(() => {
+    detailTodo();
+  }, [todo]);
+
   return {
     register,
     errors,
+    todoDeitals,
     handleSubmit,
     onSubmit,
   };
