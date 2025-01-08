@@ -1,50 +1,96 @@
-# React + TypeScript + Vite
+# App - Guia de Uso e Configuração
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo ao projeto! Este guia fornecerá instruções claras para rodar e utilizar a aplicação em diferentes modos.
 
-Currently, two official plugins are available:
+## Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org) (recomendado: última versão LTS)
+- [pnpm](https://pnpm.io/installation) (para gerenciamento de pacotes)
+- [Docker](https://www.docker.com) e [Docker Compose](https://docs.docker.com/compose/) (para executar com containers, se desejado)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## Rodando o Projeto
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Modo Desenvolvimento
+
+Para iniciar o projeto no modo de desenvolvimento (com hot reload):
+
+```bash
+pnpm dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+O projeto estará disponível na porta configurada (por padrão, 5173).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Modo Build
+
+Para rodar a versão otimizada de produção:
+
+1. Compile o projeto:
+
+   ```bash
+   pnpm build
+   ```
+
+2. Execute o servidor de pré-visualização:
+
+   ```bash
+   pnpm preview
+   ```
+
+O projeto estará disponível em `http://localhost:4173`.
+
+---
+
+### Modo Docker Compose
+
+Caso prefira utilizar o Docker Compose, siga os passos abaixo:
+
+1. Certifique-se de que o Docker e o Docker Compose estão instalados e funcionando.
+2. Suba os containers:
+
+   ```bash
+   docker compose up -d
+   ```
+
+3. Acesse o projeto em `http://localhost:4173`.
+
+Para parar os containers:
+
+```bash
+docker compose down
 ```
+
+---
+
+## Estrutura do Projeto
+
+Abaixo está a estrutura principal do projeto:
+
+```
+/
+├── src/                # Código fonte da aplicação
+├── public/             # Arquivos estáticos
+├── Dockerfile          # Configuração do Docker
+├── docker-compose.yml  # Configuração do Docker Compose
+├── package.json        # Dependências e scripts do projeto
+└── README.md           # Este arquivo
+```
+
+---
+
+## Configuração de Ambiente
+
+Certifique-se de criar um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
+```
+VITE_API_URL=http://localhost:port/v1
+```
+
+Substitua `port` pela porta adequada ao seu ambiente.
+
+Para referência, consulte o arquivo `.env.example`.
