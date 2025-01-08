@@ -3,12 +3,13 @@ import useTodoController from "./todo.controller";
 import CardArea from "./components/card_area";
 
 export default function Todos() {
-  const { todos, refetch } = useTodoController();
+  const { todos, refetch, handleSearch } = useTodoController();
 
   return (
     <div className="h-screen scroll-smooth ">
       <div className="pl-10">
         <TextField
+          onChange={handleSearch}
           placeholder="Nome, descrição"
           label="Pesquisar"
           variant="outlined"
