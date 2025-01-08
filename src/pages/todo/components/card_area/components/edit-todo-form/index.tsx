@@ -21,6 +21,7 @@ interface Props {
 export default function EditTodoForm({ open, onCancel, refetch, todo }: Props) {
   const { onSubmit, errors, handleSubmit, register } =
     useEditTodoFormController({
+      onCancel,
       refetch,
       todo,
     });

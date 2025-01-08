@@ -11,9 +11,14 @@ import { ITodo } from "../../../../todo.service.interfaces";
 interface Props {
   todo: ITodo;
   refetch(): Promise<void>;
+  onCancel(): void;
 }
 
-export default function useEditTodoFormController({ refetch, todo }: Props) {
+export default function useEditTodoFormController({
+  refetch,
+  todo,
+  onCancel,
+}: Props) {
   const { update } = useTodoService();
 
   const {
@@ -32,6 +37,7 @@ export default function useEditTodoFormController({ refetch, todo }: Props) {
         description: data.description || undefined,
         priority: data.priority || undefined,
       });
+      onCancel();
       reset();
       await refetch();
       toast.success("Tarefa atualizada");
