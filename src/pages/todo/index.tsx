@@ -3,11 +3,11 @@ import CardArea from "./components/card_area";
 import TodoFilters from "./components/filters";
 
 export default function Todos() {
-  const { todos, refetch, handleSearch } = useTodoController();
+  const { todos, refetch, register } = useTodoController();
 
   return (
     <div className="h-screen scroll-smooth ">
-      <TodoFilters handleSearch={handleSearch} />
+      <TodoFilters register={register} />
       <CardArea refetch={refetch} todos={todos} />
     </div>
   );

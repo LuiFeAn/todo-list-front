@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
 import useTodoService, { IListTodosInput } from "./todo.service";
-import { ITodo } from "./todo.service.interfaces";
+import { ITodo, PriorityEnum } from "./todo.service.interfaces";
+import {
+  filterTodoSchema,
+  FilterTodoSchemaType,
+} from "./components/filters/todo-filters.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 export default function useTodoController() {
   const { list } = useTodoService();
 
-  const [search, setSearch] = useState("");
+  const { register, handleSubmit, watch } = useForm<FilterTodoSchemaType>({
+    resolver: zodResolver(filterTodoSchema),
+  });
+
+  const search = watch("search");
+
+  const priority = watch("priority") as PriorityEnum;
+
+  const done = watch("done");
 
   const [todos, setTodos] = useState<ITodo[]>([]);
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
 
   async function handleTodoList(params?: IListTodosInput) {
     const response = await list(params);
@@ -21,12 +31,14 @@ export default function useTodoController() {
   useEffect(() => {
     handleTodoList({
       search,
+      priority,
+      done: Boolean(done),
     });
-  }, [search]);
+  }, [search, priority, done]);
 
   return {
-    search,
-    handleSearch,
+    register,
+    handleSubmit,
     todos,
     refetch: handleTodoList,
   };
