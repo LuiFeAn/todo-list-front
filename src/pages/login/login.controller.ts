@@ -5,9 +5,12 @@ import useLoginService from "./login.service";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../@shared/security/auth.context";
 
 export default function useLoginController() {
   const { authentication } = useLoginService();
+
+  const { handleSession } = useAuth();
 
   const Nav = useNavigate();
 
@@ -22,7 +25,7 @@ export default function useLoginController() {
   const onSubmit = async (data: LoginSchemaType) => {
     try {
       const response = await authentication(data);
-      localStorage.setItem("@AUTH_SESSION", JSON.stringify(response));
+      handleSession(response);
       Nav("/todos");
       toast.success("Autenticado");
     } catch (err) {
