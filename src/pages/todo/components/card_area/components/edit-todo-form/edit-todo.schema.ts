@@ -3,11 +3,11 @@ import { z } from "zod";
 export const ediTodoInputPartialSchema = z.object({
   title: z
     .string()
-    .max(100, "O título deve ter no máximo 100 caracteres.")
+    .max(20, "O título deve ter no máximo 20 caracteres.")
     .optional(),
   description: z
     .string()
-    .max(500, "A descrição deve ter no máximo 300 caracteres.")
+    .max(250, "A descrição deve ter no máximo 250 caracteres.")
     .optional(),
   priority: z.string().optional(),
 });

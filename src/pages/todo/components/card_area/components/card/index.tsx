@@ -27,7 +27,9 @@ export default function Card({ todo, refetch, onClick }: Props) {
         </div>
       )}
 
-      <h1 className="text-2xl text-start mt-5 font-bold">{todo.title}</h1>
+      <h1 className="text-2xl text-start mt-5 font-bold break-words">
+        {todo.title}
+      </h1>
       <p
         className={`mt-3 font-bold pl-2 rounded-l-lg text-white ${handleCardColor(
           todo.priority
@@ -38,7 +40,7 @@ export default function Card({ todo, refetch, onClick }: Props) {
       <div>
         <p className="pt-10 break-words">{todo.description}</p>
       </div>
-      <div className="flex gap-2 absolute bottom-10 right-5">
+      <div className="flex gap-2 absolute bottom-1 right-2">
         {!todo.done && (
           <>
             <Check
