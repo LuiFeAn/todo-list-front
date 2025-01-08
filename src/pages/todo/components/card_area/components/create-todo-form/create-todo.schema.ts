@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { PriorityEnum } from "../../../../todo.service.interfaces";
 
 export const createTodoInputSchema = z.object({
   title: z
@@ -10,13 +9,23 @@ export const createTodoInputSchema = z.object({
     .string()
     .nonempty("A descrição é obrigatória.")
     .max(800, "A descrição deve ter no máximo 800 caracteres."),
-  priority: z.nativeEnum(PriorityEnum).optional(),
+  priority: z.string().optional(),
 });
 
-export const editodoInputPartialSchema = createTodoInputSchema.partial();
+export const ediTodoInputPartialSchema = z.object({
+  title: z
+    .string()
+    .max(100, "O título deve ter no máximo 100 caracteres.")
+    .optional(),
+  description: z
+    .string()
+    .max(800, "A descrição deve ter no máximo 800 caracteres.")
+    .optional(),
+  priority: z.string().optional(),
+});
 
 export type EditTodoInputPartialType = z.infer<
-  typeof editodoInputPartialSchema
+  typeof ediTodoInputPartialSchema
 >;
 
 export type CreateTodoInputType = z.infer<typeof createTodoInputSchema>;

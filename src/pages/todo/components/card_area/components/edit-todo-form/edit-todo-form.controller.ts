@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
   CreateTodoInputType,
-  editodoInputPartialSchema,
+  ediTodoInputPartialSchema,
 } from "../create-todo-form/create-todo.schema";
 import { ITodo } from "../../../../todo.service.interfaces";
 
@@ -22,7 +22,7 @@ export default function useEditTodoFormController({ refetch, todo }: Props) {
     reset,
     formState: { errors },
   } = useForm<CreateTodoInputType>({
-    resolver: zodResolver(editodoInputPartialSchema),
+    resolver: zodResolver(ediTodoInputPartialSchema),
   });
 
   async function onSubmit(data: CreateTodoInputType) {
