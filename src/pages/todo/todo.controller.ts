@@ -32,7 +32,7 @@ export default function useTodoController() {
     handleTodoList({
       search: search || undefined,
       priority: priority || undefined,
-      done: Boolean(done),
+      done: (done as unknown as boolean) || undefined,
     });
   }, [search, priority, done]);
 
