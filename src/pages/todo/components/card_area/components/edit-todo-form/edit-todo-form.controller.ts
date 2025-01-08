@@ -1,22 +1,18 @@
 import { toast } from "react-toastify";
 import useTodoService from "../../../../todo.service";
-import {
-  CreateTodoInputType,
-  EditTodoInputPartialType,
-} from "./create-todo.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import {
+  CreateTodoInputType,
+  editodoInputPartialSchema,
+} from "../create-todo-form/create-todo.schema";
 
 interface Props {
   refetch(): Promise<void>;
-  schema: CreateTodoInputType | EditTodoInputPartialType;
 }
 
-export default function useCreateTodoFormController({
-  refetch,
-  schema,
-}: Props) {
-  const { create } = useTodoService();
+export default function useEditTodoFormController({ refetch }: Props) {
+  const { update } = useTodoService();
 
   const {
     register,
@@ -24,17 +20,17 @@ export default function useCreateTodoFormController({
     reset,
     formState: { errors },
   } = useForm<CreateTodoInputType>({
-    resolver: zodResolver(schema as unknown as never),
+    resolver: zodResolver(editodoInputPartialSchema),
   });
 
-  async function onSubmit(data: CreateTodoInputType) {
+  async function onSubmit(id: string, data: CreateTodoInputType) {
     try {
-      await create(data);
+      await update(id, data);
       reset();
       await refetch();
-      toast.success("Tarefa criada");
+      toast.success("Tarefa atualizada");
     } catch {
-      toast.error("Não foi possível criar a tarefa");
+      toast.error("Não foi possível atualizar a tarefa");
     }
   }
 

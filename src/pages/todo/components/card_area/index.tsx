@@ -2,22 +2,16 @@ import { ITodo } from "../../todo.service.interfaces";
 import useCardAreaController from "./card-area.controller";
 import Card from "./components/card";
 import CardCreation from "./components/card-creation";
-import CreateTodoForm from "./components/card-creation-form";
+import CreateTodoForm from "./components/create-todo-form";
+import EditTodoForm from "./components/edit-todo-form";
 interface Props {
   todos: ITodo[];
   refetch(): Promise<void>;
 }
 
 export default function CardArea({ todos, refetch }: Props) {
-  const {
-    handleCardCreation,
-    handleEditTodo,
-    handleOpenModal,
-    editTodo,
-    cardCreation,
-    openModal,
-    currentSchema,
-  } = useCardAreaController();
+  const { handleCardCreation, handleEditTodo, editTodo, cardCreation } =
+    useCardAreaController();
 
   return (
     <div>
@@ -29,15 +23,11 @@ export default function CardArea({ todos, refetch }: Props) {
           <CardCreation
             onClick={() => {
               handleCardCreation();
-              handleEditTodo();
-              handleOpenModal();
             }}
           />
           {todos.map((todo) => (
             <Card
               onClick={() => {
-                handleOpenModal();
-                handleCardCreation();
                 handleEditTodo();
               }}
               refetch={refetch}
@@ -47,12 +37,14 @@ export default function CardArea({ todos, refetch }: Props) {
           ))}
         </div>
         <CreateTodoForm
-          edit={editTodo}
-          create={cardCreation}
-          schema={currentSchema}
           refetch={refetch}
-          open={openModal}
-          onCancel={handleOpenModal}
+          open={cardCreation}
+          onCancel={handleCardCreation}
+        />
+        <EditTodoForm
+          refetch={refetch}
+          open={editTodo}
+          onCancel={handleEditTodo}
         />
       </div>
     </div>

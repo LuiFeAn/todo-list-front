@@ -1,6 +1,6 @@
 import { todoApi } from "../../@shared/api";
 import { IListOutput } from "../../@shared/interfaces/list-output.interfaces";
-import { CreateTodoInputType } from "./components/card_area/components/card-creation-form/create-todo.schema";
+import { CreateTodoInputType } from "./components/card_area/components/create-todo-form/create-todo.schema";
 import { ITodo } from "./todo.service.interfaces";
 
 interface IUpdateTodoInput extends Partial<CreateTodoInputType> {
