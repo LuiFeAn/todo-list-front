@@ -10,7 +10,7 @@ import { UseFormRegister } from "react-hook-form";
 interface Props {
   register: UseFormRegister<{
     search?: string | undefined;
-    concluslion?: string | undefined;
+    done?: string | undefined;
     priority?: string | undefined;
   }>;
 }
@@ -25,20 +25,19 @@ export default function TodoFilters({ register }: Props) {
         className="bg-gray-50 lg:w-[20%] sm:w-[50%]"
         {...register("search")}
       />
-      <FormControl className="bg-gray-50 w-[10%]" {...register("priority")}>
+      <FormControl className="bg-gray-50 w-[10%]">
         <InputLabel id="priority-label">Prioridade</InputLabel>
-        <Select labelId="priority-label">
+        <Select labelId="priority-label" {...register("priority")}>
           <MenuItem value="Baixa">Baixa</MenuItem>
           <MenuItem value="Média">Média</MenuItem>
           <MenuItem value="Alta">Alta</MenuItem>
         </Select>
       </FormControl>
-      <FormControl className="bg-gray-50 w-[10%]" {...register("done")}>
+      <FormControl className="bg-gray-50 w-[10%]">
         <InputLabel id="priority-label">Conclusão</InputLabel>
-        <Select labelId="priority-label">
-          <MenuItem value="Baixa">Baixa</MenuItem>
-          <MenuItem value="Média">Média</MenuItem>
-          <MenuItem value="Alta">Alta</MenuItem>
+        <Select labelId="priority-label" {...register("done")}>
+          <MenuItem value="true">Concluídas</MenuItem>
+          <MenuItem value="false">Não Concluídas</MenuItem>
         </Select>
       </FormControl>
     </div>

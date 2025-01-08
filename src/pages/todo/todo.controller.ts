@@ -30,8 +30,8 @@ export default function useTodoController() {
 
   useEffect(() => {
     handleTodoList({
-      search,
-      priority,
+      search: search || undefined,
+      priority: priority || undefined,
       done: Boolean(done),
     });
   }, [search, priority, done]);
