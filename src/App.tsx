@@ -1,11 +1,14 @@
 import Header from "./pages/@shared/components/header";
 import AppRoutes from "./@shared/routes";
+import { AuthProvider } from "./pages/@shared/security/auth.context";
 
 function App() {
   return (
     <div>
       <Header />
-      <AppRoutes />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </div>
   );
 }
