@@ -2,11 +2,11 @@ import { toast } from "react-toastify";
 import useTodoService from "../../../../todo.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  CreateTodoInputType,
-  ediTodoInputPartialSchema,
-} from "../create-todo-form/create-todo.schema";
 import { ITodo } from "../../../../todo.service.interfaces";
+import {
+  ediTodoInputPartialSchema,
+  EditTodoInputPartialType,
+} from "./edit-todo.schema";
 
 interface Props {
   todo: ITodo;
@@ -26,11 +26,11 @@ export default function useEditTodoFormController({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<CreateTodoInputType>({
+  } = useForm<EditTodoInputPartialType>({
     resolver: zodResolver(ediTodoInputPartialSchema),
   });
 
-  async function onSubmit(data: CreateTodoInputType) {
+  async function onSubmit(data: EditTodoInputPartialType) {
     try {
       await update(todo.id, {
         title: data.title || undefined,
