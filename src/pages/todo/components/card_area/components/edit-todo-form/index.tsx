@@ -8,18 +8,21 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import useCreateTodoFormController from "../create-todo-form/create-todo-form.controller";
+import { ITodo } from "../../../../todo.service.interfaces";
+import useEditTodoFormController from "./edit-todo-form.controller";
 
 interface Props {
+  todo: ITodo;
   open: boolean;
   onCancel(): void;
   refetch(): Promise<void>;
 }
 
-export default function EditTodoForm({ open, onCancel, refetch }: Props) {
+export default function EditTodoForm({ open, onCancel, refetch, todo }: Props) {
   const { onSubmit, errors, handleSubmit, register } =
-    useCreateTodoFormController({
+    useEditTodoFormController({
       refetch,
+      todo,
     });
 
   return (

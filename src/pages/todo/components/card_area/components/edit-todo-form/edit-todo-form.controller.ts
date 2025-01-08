@@ -6,12 +6,14 @@ import {
   CreateTodoInputType,
   editodoInputPartialSchema,
 } from "../create-todo-form/create-todo.schema";
+import { ITodo } from "../../../../todo.service.interfaces";
 
 interface Props {
+  todo: ITodo;
   refetch(): Promise<void>;
 }
 
-export default function useEditTodoFormController({ refetch }: Props) {
+export default function useEditTodoFormController({ refetch, todo }: Props) {
   const { update } = useTodoService();
 
   const {
@@ -23,9 +25,9 @@ export default function useEditTodoFormController({ refetch }: Props) {
     resolver: zodResolver(editodoInputPartialSchema),
   });
 
-  async function onSubmit(id: string, data: CreateTodoInputType) {
+  async function onSubmit(data: CreateTodoInputType) {
     try {
-      await update(id, data);
+      await update(todo.id, data);
       reset();
       await refetch();
       toast.success("Tarefa atualizada");
