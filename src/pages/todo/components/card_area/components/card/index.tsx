@@ -13,8 +13,13 @@ export default function Card({ todo, refetch, onClick }: Props) {
   });
 
   return (
-    <div className={`lg:w-[400px] pl-4 lg:h-[400px] rounded-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg bg-yellow-200 rotate-1 shadow-md shadow-gray-400 border border-gray-300`}>
-      <div onClick={onClick} className={`w-full h-full`}>
+    <div
+      className={`lg:w-[400px] pl-4 lg:h-[400px] rounded-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg bg-yellow-200 rotate-1 shadow-md shadow-gray-400 border border-gray-300`}
+    >
+      <div
+        onClick={!todo.done ? onClick : undefined}
+        className={`w-full h-full`}
+      >
         {todo.done && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 rounded-lg z-10">
             <p className="text-2xl font-bold animate-pulse text-black">
