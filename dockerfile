@@ -4,14 +4,12 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* ./
 
-RUN npm install -g pnpm
-
-RUN pnpm install
+RUN npm install -g pnpm && pnpm install
 
 COPY . .
 
 RUN pnpm build
 
-EXPOSE 8000
+EXPOSE 4173
 
-CMD ["pnpm", "start:prod"]
+CMD ["pnpm", "preview"]
